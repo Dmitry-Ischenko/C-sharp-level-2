@@ -1,0 +1,9 @@
+C:\Users\zaaza\source\repos\CS-2 21.04\Asteroids\bin\Debug\Asteroids.exe.config
+C:\Users\zaaza\source\repos\CS-2 21.04\Asteroids\bin\Debug\Asteroids.exe
+C:\Users\zaaza\source\repos\CS-2 21.04\Asteroids\bin\Debug\Asteroids.pdb
+C:\Users\zaaza\source\repos\CS-2 21.04\Asteroids\obj\Debug\Asteroids.csprojAssemblyReference.cache
+C:\Users\zaaza\source\repos\CS-2 21.04\Asteroids\obj\Debug\Asteroids.csproj.CoreCompileInputs.cache
+C:\Users\zaaza\source\repos\CS-2 21.04\Asteroids\obj\Debug\Asteroids.exe
+C:\Users\zaaza\source\repos\CS-2 21.04\Asteroids\obj\Debug\Asteroids.pdb
+C:\Users\zaaza\source\repos\CS-2 21.04\Asteroids\bin\Debug\Images\star.png
+C:\Users\zaaza\source\repos\CS-2 21.04\Asteroids\bin\Debug\Images\fon.jpg
