@@ -1,0 +1,10 @@
+D:\github.com\C-sharp-level-2\DinoGame\bin\Debug\Resources\cloud.png
+D:\github.com\C-sharp-level-2\DinoGame\bin\Debug\DinoGame.exe.config
+D:\github.com\C-sharp-level-2\DinoGame\bin\Debug\DinoGame.exe
+D:\github.com\C-sharp-level-2\DinoGame\bin\Debug\DinoGame.pdb
+D:\github.com\C-sharp-level-2\DinoGame\obj\Debug\DinoGame.csprojAssemblyReference.cache
+D:\github.com\C-sharp-level-2\DinoGame\obj\Debug\DinoGame.Properties.Resources.resources
+D:\github.com\C-sharp-level-2\DinoGame\obj\Debug\DinoGame.csproj.GenerateResource.cache
+D:\github.com\C-sharp-level-2\DinoGame\obj\Debug\DinoGame.csproj.CoreCompileInputs.cache
+D:\github.com\C-sharp-level-2\DinoGame\obj\Debug\DinoGame.exe
+D:\github.com\C-sharp-level-2\DinoGame\obj\Debug\DinoGame.pdb
