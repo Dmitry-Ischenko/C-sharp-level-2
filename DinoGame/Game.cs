@@ -18,6 +18,7 @@ namespace DinoGame
         static public int Height { get; private set; }
         //static public Image background = Image.FromFile("Images\\fon.jpg");
         static CloudObject[] objs = new CloudObject[3];
+        static DinoObject dino;
         static Timer timer = new Timer();
         static int speed = 1;
         static int tickCount = 0;
@@ -38,11 +39,19 @@ namespace DinoGame
             Height = form.ClientSize.Height;
             // Связываем буфер в памяти с графическим объектом.
             // для того, чтобы рисовать в буфере
+            form.KeyDown += new KeyEventHandler(Form_KeyDown);
             Buffer = context.Allocate(g, new Rectangle(0, 0, Width, Height));
             timer.Interval = 1;
             timer.Tick += Timer_Tick;
             timer.Start();
             Load();
+        }
+        private static void Form_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Space)
+            {
+                dino.Jump();
+            }
         }
 
         private static void Timer_Tick(object sender, EventArgs e)
@@ -63,12 +72,14 @@ namespace DinoGame
             {
                 objs[i-1] = new CloudObject(new Point(Width/i, Height / 4/i), new Point(speed / 4, Width / 4), new Size(136, 35));
             }
+            dino = new DinoObject(new Point(0, Height- Height/5), new Point(0,0), new Size(100,100));
         }
         static public void Draw()
         {
             Buffer.Graphics.Clear(Color.Gray);
             foreach (CloudObject obj in objs)
                 obj.Draw(Buffer);
+            dino.Draw(Buffer,speed);
             Buffer.Render();
         }
 
@@ -76,6 +87,7 @@ namespace DinoGame
         {
             foreach (CloudObject obj in objs)
                 obj.UpdatePosition(speed);
+            dino.UpdatePosition();
         }
     }
 }

@@ -10,9 +10,14 @@ namespace DinoGame
             form.Width = 1024;
             form.Height = 768;
             form.Show();
+            //form.FormClosing += new FormClosingEventHandler(MyMethod);
             Game.Init(form);
             Game.Draw();
             Application.Run(form);
         }
+        //static void MyMethod(object sender, System.EventArgs e)
+        //{
+
+        //}
     }
 }
