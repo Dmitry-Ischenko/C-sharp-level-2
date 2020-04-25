@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.757
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CS-2 21.04", "CS-2 21.04\CS-2 21.04.csproj", "{31326E12-5A16-409B-B178-E5FD2D379ACF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassVector", "ClassVector\ClassVector.csproj", "{CF1CB6C7-1808-44DB-9CBB-BAD79186D179}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Lesson1", "Lesson1", "{5862156A-2B8B-45DA-AC75-6B4582DD0075}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Asteroids", "Asteroids\Asteroids.csproj", "{1BC4FAB4-E255-4859-98CB-D6E8E487DD84}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{31326E12-5A16-409B-B178-E5FD2D379ACF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31326E12-5A16-409B-B178-E5FD2D379ACF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31326E12-5A16-409B-B178-E5FD2D379ACF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31326E12-5A16-409B-B178-E5FD2D379ACF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF1CB6C7-1808-44DB-9CBB-BAD79186D179}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF1CB6C7-1808-44DB-9CBB-BAD79186D179}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF1CB6C7-1808-44DB-9CBB-BAD79186D179}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF1CB6C7-1808-44DB-9CBB-BAD79186D179}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BC4FAB4-E255-4859-98CB-D6E8E487DD84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BC4FAB4-E255-4859-98CB-D6E8E487DD84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BC4FAB4-E255-4859-98CB-D6E8E487DD84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BC4FAB4-E255-4859-98CB-D6E8E487DD84}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{31326E12-5A16-409B-B178-E5FD2D379ACF} = {5862156A-2B8B-45DA-AC75-6B4582DD0075}
+		{CF1CB6C7-1808-44DB-9CBB-BAD79186D179} = {5862156A-2B8B-45DA-AC75-6B4582DD0075}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {ECDCCC9C-3498-4F18-B094-C0EFBB7E6D0C}
+	EndGlobalSection
+EndGlobal
