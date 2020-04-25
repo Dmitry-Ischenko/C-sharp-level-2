@@ -29,15 +29,20 @@ namespace task1
             foreach (WorkersBase get in workersArrey)
                 Console.WriteLine(get.Pay);
             Console.WriteLine("-------------");
-            ArrayWorkers workersArreyClass = new ArrayWorkers(10);
+            ArrayWorkers workersArreyClass = new ArrayWorkers(workersArrey);
             foreach (WorkersBase serch in workersArreyClass)
+                Console.WriteLine(serch.Pay);
             Console.ReadKey();
         }
     }
-    public class ArrayWorkers: IEnumerator
+    public class ArrayWorkers
     {
         WorkersBase[] workersArrey;
-        int position = -1;
+        public ArrayWorkers (WorkersBase[] _workersArrey)
+        {
+            workersArrey = new WorkersBase[_workersArrey.Length];
+            _workersArrey.CopyTo(workersArrey,0);
+        }
         public ArrayWorkers (int count)
         {
             workersArrey = new WorkersBase[count];
@@ -53,42 +58,44 @@ namespace task1
                 workersArrey[index] = value;
             }
         }
-
-        object IEnumerator.Current
+        public IEnumerator GetEnumerator()
         {
-            get
-            {
-                return Current;
-            }
+            return new AWEnumerator(workersArrey);
         }
-
-        public WorkersBase Current
+    }
+    public class AWEnumerator: IEnumerator
+    {
+        WorkersBase[] workersArrey;
+        int position = -1;
+        public AWEnumerator(WorkersBase[] _workersArrey)
+        {
+            workersArrey = _workersArrey;
+        }
+        public object Current
         {
             get
             {
-                try
-                {
-                    return workersArrey[position];
-                }
-                catch (IndexOutOfRangeException)
-                {
+                if (position == -1 || position >= workersArrey.Length)
                     throw new InvalidOperationException();
-                }
+                return workersArrey[position];
             }
         }
-
         public bool MoveNext()
         {
-            position++;
-            return (position< workersArrey.Length);
+            if (position < workersArrey.Length - 1)
+            {
+                position++;
+                return true;
+            }
+            else
+                return false;
         }
-
         public void Reset()
         {
             position = -1;
         }
     }
-    public abstract class WorkersBase : IComparable, IEnumerable
+    public abstract class WorkersBase : IComparable
     {
         public double Pay { get; protected set; }
         public WorkersBase(double _hourlyRate)
@@ -108,10 +115,6 @@ namespace task1
                 throw new ArgumentException("Object is not a WorkersBase");
         }
 
-        public IEnumerator GetEnumerator()
-        {
-            throw new NotImplementedException();
-        }
     }
     public class WorkersHR : WorkersBase
     {
