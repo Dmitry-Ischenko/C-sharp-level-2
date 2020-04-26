@@ -41,7 +41,7 @@ namespace DinoGame
             // для того, чтобы рисовать в буфере
             form.KeyDown += new KeyEventHandler(Form_KeyDown);
             Buffer = context.Allocate(g, new Rectangle(0, 0, Width, Height));
-            timer.Interval = 1;
+            timer.Interval = 16;
             timer.Tick += Timer_Tick;
             timer.Start();
             Load();
@@ -76,17 +76,22 @@ namespace DinoGame
         }
         static public void Draw()
         {
-            Buffer.Graphics.Clear(Color.Gray);
+            Buffer.Graphics.Clear(Color.FromArgb(255, 247, 247, 247));
+            Buffer.Graphics.DrawLine(new Pen(Color.Black,2),new Point(0, Height - Height / 5+60),new Point(Width, Height - Height / 5 + 60));
             foreach (CloudObject obj in objs)
                 obj.Draw(Buffer);
-            dino.Draw(Buffer,speed);
+            dino.Draw(Buffer);
             Buffer.Render();
         }
 
         static public void Update()
         {
             foreach (CloudObject obj in objs)
-                obj.UpdatePosition(speed);
+            {
+                obj.PointMoving = new Point(speed,0);
+                obj.UpdatePosition();
+            }
+            dino.SpeedAnimation = speed;
             dino.UpdatePosition();
         }
     }

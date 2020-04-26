@@ -9,6 +9,7 @@ namespace DinoGame
             Form form = new Form();
             form.Width = 1024;
             form.Height = 768;
+            form.StartPosition = FormStartPosition.CenterScreen;
             form.Show();
             //form.FormClosing += new FormClosingEventHandler(MyMethod);
             Game.Init(form);
