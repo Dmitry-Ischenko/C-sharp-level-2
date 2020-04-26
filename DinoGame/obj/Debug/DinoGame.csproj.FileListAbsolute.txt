@@ -11,3 +11,9 @@ D:\github.com\C-sharp-level-2\DinoGame\obj\Debug\DinoGame.pdb
 D:\github.com\C-sharp-level-2\DinoGame\bin\Debug\Resources\Dino1.png
 D:\github.com\C-sharp-level-2\DinoGame\bin\Debug\Resources\Dino2.png
 D:\github.com\C-sharp-level-2\DinoGame\bin\Debug\Resources\Dino3.png
+D:\github.com\C-sharp-level-2\DinoGame\bin\Debug\Resources\dino4.png
+D:\github.com\C-sharp-level-2\DinoGame\bin\Debug\Resources\dinoICO.png
+D:\github.com\C-sharp-level-2\DinoGame\bin\Debug\Resources\gameover.png
+D:\github.com\C-sharp-level-2\DinoGame\bin\Debug\Resources\ground.png
+D:\github.com\C-sharp-level-2\DinoGame\bin\Debug\Resources\numbers.png
+D:\github.com\C-sharp-level-2\DinoGame\bin\Debug\Resources\restart.png

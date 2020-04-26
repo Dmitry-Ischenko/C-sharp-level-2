@@ -19,6 +19,7 @@ namespace DinoGame
         //static public Image background = Image.FromFile("Images\\fon.jpg");
         static CloudObject[] objs = new CloudObject[3];
         static DinoObject dino;
+        static DrawText showTextInWindow;
         static Timer timer = new Timer();
         static int speed = 1;
         static int tickCount = 0;
@@ -73,6 +74,7 @@ namespace DinoGame
                 objs[i-1] = new CloudObject(new Point(Width/i, Height / 4/i), new Point(speed / 4, Width / 4), new Size(136, 35));
             }
             dino = new DinoObject(new Point(0, Height- Height/5), new Point(0,0), new Size(100,100));
+            showTextInWindow = new DrawText(new Point(Width- Width/5, 10));
         }
         static public void Draw()
         {
@@ -81,6 +83,7 @@ namespace DinoGame
             foreach (CloudObject obj in objs)
                 obj.Draw(Buffer);
             dino.Draw(Buffer);
+            showTextInWindow.Draw(Buffer);
             Buffer.Render();
         }
 
@@ -93,6 +96,7 @@ namespace DinoGame
             }
             dino.SpeedAnimation = speed;
             dino.UpdatePosition();
+            showTextInWindow.OutString = $"HI {speed}";
         }
     }
 }

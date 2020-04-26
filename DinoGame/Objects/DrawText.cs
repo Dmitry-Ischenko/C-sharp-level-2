@@ -1,29 +1,69 @@
-﻿using System;
-using System.Drawing;
+﻿using System.Drawing;
+using System.Collections.Generic;
+using System;
 
 namespace DinoGame.Objects
 {
     class DrawText : GameObject
     {
-        //static Image ImageObj { get; } = Image.FromFile("Resources\\numbers.png");
-        static Image[] sprites = new Image[12]; 
+        static Image[] sprites = new Image[12];
+        public string OutString { get; set; }
+        private Dictionary<char, int> index = new Dictionary<char, int> {
+            {'0',0},
+            {'1',1},
+            {'2',2},
+            {'3',3},
+            {'4',4},
+            {'5',5},
+            {'6',6},
+            {'7',7},
+            {'8',8},
+            {'9',9},
+            {'H',10},
+            {'I',11}
+        };
         public DrawText(Point position)     
         {
             Image ImageObj = Image.FromFile("Resources\\numbers.png");
-            ImageObj.SelectActiveFrame;
+            Bitmap bmp = new Bitmap(ImageObj);
+            Size imgSize = new Size(20, ImageObj.Height);
+            Point imgPos;
+            System.Drawing.Imaging.PixelFormat format = bmp.PixelFormat;
             for (int i = 0; i < sprites.Length; i++)
             {
-                //sprites[0] = Image.
+                imgPos = new Point(i*20,0);
+                if (imgSize.Width+imgPos.X > bmp.Width)
+                {
+                    imgSize = new Size(bmp.Width - imgPos.X, bmp.Height);
+                }
+                RectangleF cloneRect = new RectangleF(imgPos, imgSize);
+                sprites[i] = bmp.Clone(cloneRect, format);
             }
+            Position = position;
+            OutString = "";
         }
         public override void Draw(BufferedGraphics _buffer)
         {
-            throw new NotImplementedException();
+            Point _position = Position;
+            Console.WriteLine(OutString);
+            foreach (char simbol in OutString)
+            {
+                int value;
+                if (simbol.Equals(' '))
+                {
+                    _position = new Point(_position.X + sprites[0].Width, _position.Y);
+                }
+                else if (index.TryGetValue(simbol,out value))
+                {
+                    _buffer.Graphics.DrawImage(sprites[value], _position);
+                    _position = new Point(_position.X + sprites[0].Width, _position.Y);
+                }
+            }
         }
 
         public override void UpdatePosition()
         {
-            throw new NotImplementedException();
+            
         }
     }
 }
