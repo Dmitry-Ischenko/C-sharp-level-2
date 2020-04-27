@@ -22,16 +22,17 @@ namespace DinoGame.Objects
         {
             if (_jump == 1)
             {
-                if (_jumpHeight < 15)
+                if (_jumpHeight < 25)
                 {
                     //Position.Y -= 8;
+                    Position = new Point(Position.X, Position.Y -7);
                     _jumpHeight++;
                 }
                 else
                 {
-                    //Position.Y += 8;
+                    Position = new Point(Position.X, Position.Y +7);
                     _jumpHeight++;
-                    if (_jumpHeight == 30)
+                    if (_jumpHeight == 50)
                     {
                         _jumpHeight = 0;
                         _jump = 0;

@@ -7,8 +7,8 @@ namespace DinoGame
         static void Main(string[] args)
         {
             Form form = new Form();
-            form.Width = 1024;
-            form.Height = 768;
+            form.Width = 960;
+            form.Height = 580;
             form.StartPosition = FormStartPosition.CenterScreen;
             form.Show();
             //form.FormClosing += new FormClosingEventHandler(MyMethod);

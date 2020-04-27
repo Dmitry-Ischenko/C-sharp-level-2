@@ -3,9 +3,9 @@ using System.Drawing;
 
 namespace DinoGame.Objects
 {
-    abstract class GameObject
+    abstract class GameObject: ICollision
     {
-        protected Point Position { get; set; }
+        public Point Position { get; set; }
         public Point PointMoving { get; set; }
         public Size Size { get; protected set; }
         public GameObject ()
@@ -22,5 +22,17 @@ namespace DinoGame.Objects
         }
         public abstract void Draw(BufferedGraphics _buffer);
         public abstract void UpdatePosition();
+        public Rectangle Rect
+        {
+            get
+            {
+                return new Rectangle(Position, Size);
+            }
+        }
+
+        public bool Collision(ICollision other)
+        {
+            if (other.Rect.IntersectsWith(this.Rect)) return true; else return false;
+        }
     }
 }

@@ -9,11 +9,11 @@ namespace DinoGame.Objects
         //public int Speed { get; set; }
         public CloudObject(Point position, Point pointMoving, Size size) : base(position, pointMoving, size)
         {
-            //Position.X += Size.Width;
+
         }
         public override void Draw(BufferedGraphics _buffer)
         {
-            _buffer.Graphics.DrawImage(ImageObj, Position);
+            _buffer.Graphics.DrawImage(ImageObj, new Rectangle(Position, Size));
         }
         public override void UpdatePosition()
         {
