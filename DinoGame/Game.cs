@@ -44,7 +44,7 @@ namespace DinoGame
             Height = form.ClientSize.Height;
             // Связываем буфер в памяти с графическим объектом.
             // для того, чтобы рисовать в буфере
-            form.KeyDown += new KeyEventHandler(Form_KeyDown);
+            form.KeyDown += Form_KeyDown;
             form.SizeChanged += SizeChanged;
             Buffer = context.Allocate(g, new Rectangle(0, 0, Width, Height));
             timer.Interval = 16;
@@ -122,7 +122,7 @@ namespace DinoGame
             Cactus.UpdatePosition();
             if (Cactus.Position.X+Cactus.Size.Width < 0) Cactus.Position = new Point(Width,Cactus.Position.Y);
             showTextInWindow.OutString = $"HI 00 {hz:000}";
-            if (Cactus.Collision(dino))
+            if (dino.Collision(Cactus))
             {
                 timer.Stop();
             }
