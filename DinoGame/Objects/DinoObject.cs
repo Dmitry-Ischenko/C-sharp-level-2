@@ -21,9 +21,22 @@ namespace DinoGame.Objects
             _indexImage = 1;
             SpeedAnimation = 10;
             _jumpHeight = 0;
+            _jump = 0;
             Rect[0] = new Rectangle(new Point(Position.X+40,Position.Y),new Size(44,32));
             Rect[1] = new Rectangle(new Point(Position.X,Position.Y+29),new Size(69,32));
             Rect[2] = new Rectangle(new Point(Position.X+20,Position.Y+62),new Size(38,28));
+        }
+        public override void AllDateUpdate(Point position, Point pointMoving, Size size)
+        {
+            base.AllDateUpdate(position, pointMoving, size);
+            Position = new Point(Position.X + Size.Width, Position.Y);
+            _indexImage = 1;
+            SpeedAnimation = 10;
+            _jumpHeight = 0;
+            _jump = 0;
+            Rect[0] = new Rectangle(new Point(Position.X + 40, Position.Y), new Size(44, 32));
+            Rect[1] = new Rectangle(new Point(Position.X, Position.Y + 29), new Size(69, 32));
+            Rect[2] = new Rectangle(new Point(Position.X + 20, Position.Y + 62), new Size(38, 28));
         }
         public override void UpdatePosition()
         {
@@ -57,10 +70,10 @@ namespace DinoGame.Objects
         public override void Draw(BufferedGraphics _buffer)
         {
             _buffer.Graphics.DrawImage(_imageObj[_indexImage], new Rectangle(Position, Size));
-            for (int i = 0; i < Rect.Length; i++)
-            {
-                _buffer.Graphics.DrawRectangle(new Pen(Color.Red, 2), Rect[i]);
-            }
+            //for (int i = 0; i < Rect.Length; i++)
+            //{
+            //    _buffer.Graphics.DrawRectangle(new Pen(Color.Red, 2), Rect[i]);
+            //}
             if (_jump == 0)
             {
                 SpeedAnimation--;

@@ -17,7 +17,7 @@ namespace DinoGame.Objects
         public override void Draw(BufferedGraphics _buffer)
         {
             _buffer.Graphics.DrawImage(ImageObj, new Rectangle(Position, Size));
-            _buffer.Graphics.DrawRectangle(new Pen(Color.Red, 2), this.Rect);
+            //_buffer.Graphics.DrawRectangle(new Pen(Color.Red, 2), this.Rect);
         }
 
         public override void UpdatePosition()

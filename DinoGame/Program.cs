@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 
 namespace DinoGame
 {
@@ -16,9 +17,5 @@ namespace DinoGame
             Game.Draw();
             Application.Run(form);
         }
-        //static void MyMethod(object sender, System.EventArgs e)
-        //{
-
-        //}
     }
 }
