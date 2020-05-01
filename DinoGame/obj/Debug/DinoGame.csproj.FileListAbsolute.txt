@@ -18,3 +18,5 @@ D:\github.com\C-sharp-level-2\DinoGame\bin\Debug\Resources\ground.png
 D:\github.com\C-sharp-level-2\DinoGame\bin\Debug\Resources\numbers.png
 D:\github.com\C-sharp-level-2\DinoGame\bin\Debug\Resources\restart.png
 D:\github.com\C-sharp-level-2\DinoGame\bin\Debug\Resources\catus1.png
+D:\github.com\C-sharp-level-2\DinoGame\bin\Debug\Resources\catus2.png
+D:\github.com\C-sharp-level-2\DinoGame\bin\Debug\Resources\catus3.png

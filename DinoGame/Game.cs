@@ -9,6 +9,7 @@ namespace DinoGame
     {
         static BufferedGraphicsContext context;
         static public BufferedGraphics Buffer { get; private set; }
+        public static Random Rand { get; private set; }
 
         // Свойства
         // Ширина и высота игрового поля
@@ -24,7 +25,7 @@ namespace DinoGame
         static Timer timer = new Timer();
         static int tickCount = 0;
         static ulong hz = 0;
-        static int speed = 8;
+        static int speed = 1;
         static ulong record = 0;
         static int start = 0;
 
@@ -37,6 +38,7 @@ namespace DinoGame
         {
             // Графическое устройство для вывода графики            
             // предоставляет доступ к главному буферу графического контекста для текущего приложения
+            Rand = new Random();
             Graphics g;
             context = BufferedGraphicsManager.Current;
             g = form.CreateGraphics();
@@ -52,7 +54,7 @@ namespace DinoGame
             //form.SizeChanged -= SizeChanged;
             form.SizeChanged += SizeChanged;
             Buffer = context.Allocate(g, new Rectangle(0, 0, Width, Height));
-            timer.Interval = 16;
+            timer.Interval = 1;
             //timer.Tick -= Timer_Tick;
             timer.Tick += Timer_Tick;
             hz = 0;
@@ -87,6 +89,16 @@ namespace DinoGame
                     dino.Jump();
                 }
             }
+            if (e.KeyCode == Keys.Z)
+            {
+                if (timer.Enabled)
+                {
+                    timer.Stop();
+                } else
+                {
+                    timer.Start();
+                }
+            }
         }
 
         private static void Timer_Tick(object sender, EventArgs e)
@@ -94,7 +106,7 @@ namespace DinoGame
             tickCount++;
             if (tickCount > 1000)
             {
-                speed++;
+                //speed++;
                 tickCount = 0;
             }
             if (tickCount%100 == 0)
@@ -169,7 +181,11 @@ namespace DinoGame
             ground.UpdatePosition();            
             dino.UpdatePosition();
             Cactus.UpdatePosition();
-            if (Cactus.Position.X+Cactus.Size.Width < 0) Cactus.Position = new Point(Width,Cactus.Position.Y);
+            if (Cactus.Position.X + Cactus.Size.Width < 0)
+            {
+                Cactus.Position = new Point(Width, Cactus.Position.Y);
+                Cactus.UpdateIndex();
+            }
             showTextInWindow.OutString = $"HI {record:00} {hz:000}";
             if (dino.Collision(Cactus))
             {

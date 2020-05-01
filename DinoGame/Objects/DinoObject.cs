@@ -70,10 +70,10 @@ namespace DinoGame.Objects
         public override void Draw(BufferedGraphics _buffer)
         {
             _buffer.Graphics.DrawImage(_imageObj[_indexImage], new Rectangle(Position, Size));
-            //for (int i = 0; i < Rect.Length; i++)
-            //{
-            //    _buffer.Graphics.DrawRectangle(new Pen(Color.Red, 2), Rect[i]);
-            //}
+            for (int i = 0; i < Rect.Length; i++)
+            {
+                _buffer.Graphics.DrawRectangle(new Pen(Color.Red, 2), Rect[i]);
+            }
             if (_jump == 0)
             {
                 SpeedAnimation--;
