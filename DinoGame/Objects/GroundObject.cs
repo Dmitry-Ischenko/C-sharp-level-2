@@ -11,9 +11,9 @@ namespace DinoGame.Objects
         {
             Size = new Size(_imageObj.Width, _imageObj.Height);
         }
-        public override void AllDateUpdate(Point position, Point pointMoving, Size size)
+        public override void AllDataUpdate(Point position, Point pointMoving, Size size)
         {
-            base.AllDateUpdate(position, pointMoving, size);
+            base.AllDataUpdate(position, pointMoving, size);
             Size = new Size(_imageObj.Width, _imageObj.Height);
         }
         public override void Draw(BufferedGraphics _buffer)
