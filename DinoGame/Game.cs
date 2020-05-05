@@ -10,12 +10,12 @@ namespace DinoGame
     {
         static BufferedGraphicsContext context;
         static public BufferedGraphics Buffer { get; private set; }
-        public static Random Rand { get; private set; }
+        public static Random Rand { get; private set; } = new Random();
 
         // Свойства
         // Ширина и высота игрового поля
         static List<GameObject> ObjectsList = new List<GameObject>();
-        static public Random Random { get; } = new Random();
+        //static public Random Random { get; }
         static public int Width { get; private set; }
         static public int Height { get; private set; }
         static DinoObject dino;
