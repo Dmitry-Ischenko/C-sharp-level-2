@@ -36,7 +36,7 @@ namespace DinoGame
         {
             // Графическое устройство для вывода графики            
             // предоставляет доступ к главному буферу графического контекста для текущего приложения
-            Rand = new Random();
+            //Rand = new Random();
             Graphics g;
             context = BufferedGraphicsManager.Current;
             g = form.CreateGraphics();
@@ -52,7 +52,7 @@ namespace DinoGame
             form.KeyDown += Form_KeyDown;
             form.KeyUp += Form_KeyUp;
             //form.SizeChanged -= SizeChanged;
-            form.SizeChanged += SizeChanged;
+            //form.SizeChanged += SizeChanged;
             Buffer = context.Allocate(g, new Rectangle(0, 0, Width, Height));
             timer.Interval = 1;
             //timer.Tick -= Timer_Tick;
@@ -73,12 +73,12 @@ namespace DinoGame
             }
         }
 
-        private static void SizeChanged(object sender, EventArgs e)
-        {
-            if (sender is Form form) {
-                //Console.WriteLine($"Width:{form.Width} Height:{form.Height}");
-            }
-        }
+        //private static void SizeChanged(object sender, EventArgs e)
+        //{
+        //    if (sender is Form form) {
+        //        //Console.WriteLine($"Width:{form.Width} Height:{form.Height}");
+        //    }
+        //}
 
         private static void Form_KeyDown(object sender, KeyEventArgs e)
         {
@@ -140,6 +140,7 @@ namespace DinoGame
             speed = 8;
             //speed = 0;
             CactusObject.Count = 0;
+            PterodactylObject.Count = 0;
             if (ObjectsList.Count == 0)
             {
                 for (int i = 1; i < 4; i++)
@@ -268,14 +269,14 @@ namespace DinoGame
                 case 1:
                     {
                         ObjectsList.Add(new CactusObject(new Point(Width + Rand.Next(300, 900), Height - Height / 5 + 25), new Point(speed, 0), new Size(30, 70)));
-                        Console.WriteLine("case 1");
+                        //Console.WriteLine("case 1");
                         break;
                     }
                 case 2:
                     {
                         ObjectsList.Remove(objBuff);
                         CactusObject.Count--;
-                        Console.WriteLine("case 2");
+                        //Console.WriteLine("case 2");
                         break;
                     }
                 case 3:
@@ -284,21 +285,21 @@ namespace DinoGame
                         CactusObject.Count--;
                         int yPosition = Rand.Next(0, 3);
                         ObjectsList.Add(new PterodactylObject(new Point(Width, Height - Height / 3 + 35 * yPosition), new Point(speed, 0), new Size(92, 68)));
-                        Console.WriteLine("case 3");
+                        //Console.WriteLine("case 3");
                         break;
                     }
                 case 4:
                     {
                         int yPosition = Rand.Next(0, 3);
                         ObjectsList.Add(new PterodactylObject(new Point(Width + Rand.Next(300, 900), Height - Height / 3 + 35 * yPosition), new Point(speed, 0), new Size(92, 68)));
-                        Console.WriteLine("case 4");
+                        //Console.WriteLine("case 4");
                         break;
                     }
                 case 5:
                     {
                         ObjectsList.Remove(objBuff);
                         PterodactylObject.Count--;
-                        Console.WriteLine("case 5");
+                        //Console.WriteLine("case 5");
                         break;
                     }
                 case 6:
@@ -306,7 +307,7 @@ namespace DinoGame
                         ObjectsList.Remove(objBuff);
                         PterodactylObject.Count--;
                         ObjectsList.Add(new CactusObject(new Point(Width, Height - Height / 5 + 25), new Point(speed, 0), new Size(30, 70)));
-                        Console.WriteLine("case 6");
+                        //Console.WriteLine("case 6");
                         break;
                     }
                 default:

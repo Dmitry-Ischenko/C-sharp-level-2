@@ -93,10 +93,11 @@ namespace DinoGame.Objects
                         _bendDown = value;
                         //Console.WriteLine($"      BendDown is {_bendDown}");
                     }
-                } else
-                {
-                    //Console.WriteLine($"      JUMP! is {_jump}");
                 }
+                //else
+                //{
+                //    //Console.WriteLine($"      JUMP! is {_jump}");
+                //}
             }
         }
         public void DinoDie()
@@ -115,12 +116,6 @@ namespace DinoGame.Objects
             }
             Size _size = new Size(_imageObj[_indexImage].Size.Width, _imageObj[_indexImage].Size.Height);
             _buffer.Graphics.DrawImage(_imageObj[_indexImage], new Rectangle(_position, _size));
-
-            //for (int i = 0; i < Rect.Length; i++)
-            //{
-            //    _buffer.Graphics.DrawRectangle(new Pen(Color.Red, 2), Rect[i]);
-            //}
-
             if (_jump == 0 && _bendDown == 0 && groundPosition.Equals(Position))
             {
                 SpeedAnimation--;
@@ -143,8 +138,14 @@ namespace DinoGame.Objects
             }
 
             if (_jump == 1 && _bendDown == 0) { _indexImage = 0; }
+
+
+            //for (int i = 0; i < Rect.Length; i++)
+            //{
+            //    _buffer.Graphics.DrawRectangle(new Pen(Color.Red, 2), Rect[i]);
+            //}
         }
-    public new bool Collision(ICollision other)
+        public new bool Collision(ICollision other)
         {
             for (int i = 0; i < Rect.Length; i++)
             {
