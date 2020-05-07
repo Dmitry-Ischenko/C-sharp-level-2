@@ -1,0 +1,7 @@
+C:\Users\zaaza\source\repos\CS-2 21.04\TableFunctionOverAbstractMethod\bin\Debug\TableFunctionOverAbstractMethod.exe.config
+C:\Users\zaaza\source\repos\CS-2 21.04\TableFunctionOverAbstractMethod\bin\Debug\TableFunctionOverAbstractMethod.exe
+C:\Users\zaaza\source\repos\CS-2 21.04\TableFunctionOverAbstractMethod\bin\Debug\TableFunctionOverAbstractMethod.pdb
+C:\Users\zaaza\source\repos\CS-2 21.04\TableFunctionOverAbstractMethod\obj\Debug\TableFunctionOverAbstractMethod.csprojAssemblyReference.cache
+C:\Users\zaaza\source\repos\CS-2 21.04\TableFunctionOverAbstractMethod\obj\Debug\TableFunctionOverAbstractMethod.csproj.CoreCompileInputs.cache
+C:\Users\zaaza\source\repos\CS-2 21.04\TableFunctionOverAbstractMethod\obj\Debug\TableFunctionOverAbstractMethod.exe
+C:\Users\zaaza\source\repos\CS-2 21.04\TableFunctionOverAbstractMethod\obj\Debug\TableFunctionOverAbstractMethod.pdb
