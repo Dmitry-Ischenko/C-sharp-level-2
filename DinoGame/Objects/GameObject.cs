@@ -20,6 +20,12 @@ namespace DinoGame.Objects
             this.PointMoving = pointMoving;
             this.Size = size;
         }
+        public virtual void AllDataUpdate(Point position, Point pointMoving, Size size)
+        {
+            this.Position = position;
+            this.PointMoving = pointMoving;
+            this.Size = size;
+        }
         public abstract void Draw(BufferedGraphics _buffer);
         public abstract void UpdatePosition();
         public Rectangle Rect
