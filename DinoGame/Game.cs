@@ -182,48 +182,55 @@ namespace DinoGame
         }
         static public void Update()
         {
-            int updateGameObject = 0;
-            GameObject objBuff=null;
-            foreach (GameObject obj in ObjectsList)
+            int maxObj = ObjectsList.Count;
+            for (int i = 0; i < maxObj; i++)
             {
-                switch (obj)
+                switch (ObjectsList[i])
                 {
                     case CloudObject obj1:
-                    {
+                        {
                             obj1.UpdatePosition();
                             break;
-                    }
+                        }
                     case GroundObject obj1:
-                    {
+                        {
                             obj1.PointMoving = new Point(speed, obj1.PointMoving.Y);
                             obj1.UpdatePosition();
                             break;
-                    }
+                        }
                     case DrawText obj1:
-                    {
+                        {
                             obj1.OutString = $"HI {record:000} {hz:000}";
                             break;
-                    }
+                        }
                     case CactusObject obj1:
-                    {
+                        {
                             obj1.PointMoving = new Point(speed, obj1.PointMoving.Y);
                             obj1.UpdatePosition();
                             if (obj1.Position.X + obj1.Size.Width < 0)
                             {
                                 obj1.Position = new Point(Width, obj1.Position.Y);
                                 obj1.UpdateIndex();
-                                if (CactusObject.Count == 1 && Rand.Next(0,2) == 1)
+                                if (CactusObject.Count == 1 && Rand.Next(0, 2) == 1)
                                 {
-                                    updateGameObject = 1;
-                                } else if (CactusObject.Count == 2)
-                                {
-                                    updateGameObject = 2;
-                                    objBuff = obj1;
+                                    ObjectsList.Add(new CactusObject(new Point(Width + Rand.Next(300, 900), Height - Height / 5 + 25), 
+                                        new Point(speed, 0), new Size(30, 70)));
                                 }
-                                if (hz > 5 && CactusObject.Count == 1 && Rand.Next(0, 2) == 1)
+                                else if (CactusObject.Count == 2)
                                 {
-                                        updateGameObject = 3;
-                                        objBuff = obj1;
+                                    ObjectsList.Remove(obj1);
+                                    CactusObject.Count--;
+                                    i--;
+                                    maxObj--;
+                                } else if (hz > 5 && CactusObject.Count == 1 && Rand.Next(0, 2) == 1)
+                                {
+                                    ObjectsList.Remove(obj1);
+                                    CactusObject.Count--;
+                                    int yPosition = Rand.Next(0, 3);
+                                    ObjectsList.Add(new PterodactylObject(new Point(Width, Height - Height / 3 + 35 * yPosition), 
+                                        new Point(speed, 0), new Size(92, 68)));
+                                    i--;
+                                    maxObj--;
                                 }
                             }
                             if (dino.Collision(obj1))
@@ -231,9 +238,9 @@ namespace DinoGame
                                 GameOver();
                             }
                             break;
-                    }
+                        }
                     case PterodactylObject obj1:
-                    {
+                        {
                             obj1.PointMoving = new Point(speed, obj1.PointMoving.Y);
                             obj1.UpdatePosition();
                             if (obj1.Position.X + obj1.Size.Width < 0)
@@ -242,15 +249,24 @@ namespace DinoGame
                                 obj1.Position = new Point(Width, Height - Height / 3 + 35 * yPosition);
                                 if (PterodactylObject.Count == 1 && Rand.Next(0, 4) == 2)
                                 {
-                                    updateGameObject = 4;
-                                } else if (PterodactylObject.Count == 2)
+                                    yPosition = Rand.Next(0, 3);
+                                    ObjectsList.Add(new PterodactylObject(new Point(Width + Rand.Next(300, 900), Height - Height / 3 + 35 * yPosition), 
+                                        new Point(speed, 0), new Size(92, 68)));
+                                }
+                                else if (PterodactylObject.Count == 2)
                                 {
-                                    updateGameObject = 5;
-                                    objBuff = obj1;
-                                } else if (PterodactylObject.Count == 1)
+                                    ObjectsList.Remove(obj1);
+                                    PterodactylObject.Count--;
+                                    i--;
+                                    maxObj--;
+                                }
+                                else if (PterodactylObject.Count == 1)
                                 {
-                                    updateGameObject = 6;
-                                    objBuff = obj1;
+                                    ObjectsList.Remove(obj1);
+                                    PterodactylObject.Count--;
+                                    ObjectsList.Add(new CactusObject(new Point(Width, Height - Height / 5 + 25), new Point(speed, 0), new Size(30, 70)));
+                                    i--;
+                                    maxObj--;
                                 }
                             }
                             if (dino.Collision(obj1))
@@ -258,60 +274,10 @@ namespace DinoGame
                                 GameOver();
                             }
                             break;
-                    }
+                        }
                     default:
                         break;
                 }
-
-            }        
-            switch (updateGameObject)
-            {
-                case 1:
-                    {
-                        ObjectsList.Add(new CactusObject(new Point(Width + Rand.Next(300, 900), Height - Height / 5 + 25), new Point(speed, 0), new Size(30, 70)));
-                        //Console.WriteLine("case 1");
-                        break;
-                    }
-                case 2:
-                    {
-                        ObjectsList.Remove(objBuff);
-                        CactusObject.Count--;
-                        //Console.WriteLine("case 2");
-                        break;
-                    }
-                case 3:
-                    {
-                        ObjectsList.Remove(objBuff);
-                        CactusObject.Count--;
-                        int yPosition = Rand.Next(0, 3);
-                        ObjectsList.Add(new PterodactylObject(new Point(Width, Height - Height / 3 + 35 * yPosition), new Point(speed, 0), new Size(92, 68)));
-                        //Console.WriteLine("case 3");
-                        break;
-                    }
-                case 4:
-                    {
-                        int yPosition = Rand.Next(0, 3);
-                        ObjectsList.Add(new PterodactylObject(new Point(Width + Rand.Next(300, 900), Height - Height / 3 + 35 * yPosition), new Point(speed, 0), new Size(92, 68)));
-                        //Console.WriteLine("case 4");
-                        break;
-                    }
-                case 5:
-                    {
-                        ObjectsList.Remove(objBuff);
-                        PterodactylObject.Count--;
-                        //Console.WriteLine("case 5");
-                        break;
-                    }
-                case 6:
-                    {
-                        ObjectsList.Remove(objBuff);
-                        PterodactylObject.Count--;
-                        ObjectsList.Add(new CactusObject(new Point(Width, Height - Height / 5 + 25), new Point(speed, 0), new Size(30, 70)));
-                        //Console.WriteLine("case 6");
-                        break;
-                    }
-                default:
-                    break;
             }
             dino.UpdatePosition();
         }
