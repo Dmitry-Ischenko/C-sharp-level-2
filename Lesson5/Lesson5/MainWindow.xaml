@@ -7,6 +7,29 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <TabControl>
+            <TabItem Header="Сотрудники">
+                <Grid Background="#FFE5E5E5">
+                    <DataGrid x:Name="DataGrid">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Имя" Binding="{Binding Path=FirstName}"/>
+                            <DataGridTextColumn Header="Фамилия" Binding="{Binding Path=LastName}"/>
+                            <DataGridTextColumn Header="День Рождения" Binding="{Binding Path=Birthday}"/>
+                            <DataGridComboBoxColumn Header="Департамент" SelectedValueBinding="{Binding Path=Department}" x:Name="dataGridComboBox"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Департамент">
+                <Grid Background="#FFE5E5E5">
+                    <StackPanel>
+                        <ListBox x:Name="ListBox" Height="200"></ListBox>
+                        <TextBox x:Name="TextBox" Height="50"></TextBox>
+                        <Button Content="Добавить депортамент"></Button>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+        </TabControl>
+
     </Grid>
 </Window>
