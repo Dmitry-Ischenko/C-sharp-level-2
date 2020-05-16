@@ -1,0 +1,7 @@
+D:\github.com\C-sharp-level-2\Lesson4\Lesson4\task2\bin\Debug\task2.exe.config
+D:\github.com\C-sharp-level-2\Lesson4\Lesson4\task2\bin\Debug\task2.exe
+D:\github.com\C-sharp-level-2\Lesson4\Lesson4\task2\bin\Debug\task2.pdb
+D:\github.com\C-sharp-level-2\Lesson4\Lesson4\task2\obj\Debug\task2.csprojAssemblyReference.cache
+D:\github.com\C-sharp-level-2\Lesson4\Lesson4\task2\obj\Debug\task2.csproj.CoreCompileInputs.cache
+D:\github.com\C-sharp-level-2\Lesson4\Lesson4\task2\obj\Debug\task2.exe
+D:\github.com\C-sharp-level-2\Lesson4\Lesson4\task2\obj\Debug\task2.pdb
