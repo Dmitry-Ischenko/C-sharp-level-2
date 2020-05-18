@@ -200,14 +200,14 @@ namespace Lesson5
                 {
                     using (FileStream fs = new FileStream(filename, FileMode.OpenOrCreate))
                     {
-                        XmlSerializer formatter = new XmlSerializer(typeof(ObservableCollection<EmployeeV2>));
+                        XmlSerializer formatter = new XmlSerializer(typeof(EmployeeV2[]));
                         listEmployee.Clear();
                         listDepart.Clear();
                         DepartmentClass.Clear();
-                        listEmployee = (ObservableCollection<EmployeeV2>)formatter.Deserialize(fs);
-                        Console.WriteLine(listEmployee.Count);
-                        DataGrid.ItemsSource = null;
-                        DataGrid.ItemsSource = listEmployee;
+                        foreach (var emp in (EmployeeV2[])formatter.Deserialize(fs))
+                        {
+                            listEmployee.Add(emp);
+                        }
                     }
                 }
                 catch { }

@@ -9,7 +9,7 @@
     <Grid>
         <Menu Height="25" VerticalAlignment="Top">
             <MenuItem Header="Сохранить как" Click="SaveFileDialog"/>
-            <MenuItem Header="Загрузить как" Click="OpenFileDialog"/>
+            <MenuItem Header="Загрузить из" Click="OpenFileDialog"/>
         </Menu>
         <TabControl Margin="0,22">
             <TabItem Header="Сотрудники">
