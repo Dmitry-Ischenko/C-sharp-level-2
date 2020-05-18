@@ -8,8 +8,8 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Menu Height="25" VerticalAlignment="Top">
-            <MenuItem Header="Сохранить как" Click="MenuItem_Click"/>
-            <MenuItem Header="Загрузить как" Click="MenuItem_Click_1"/>
+            <MenuItem Header="Сохранить как" Click="OpenFileDialog"/>
+            <MenuItem Header="Загрузить как" Click="SaveFileDialog"/>
         </Menu>
         <TabControl Margin="0,22">
             <TabItem Header="Сотрудники">
