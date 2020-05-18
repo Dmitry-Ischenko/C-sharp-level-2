@@ -21,16 +21,20 @@ namespace Lesson5
     /// </summary>
     public partial class MainWindow : Window
     {
-        ObservableCollection<Employee> listEmployee = new ObservableCollection<Employee>();
+        //ObservableCollection<Employee> listEmployee = new ObservableCollection<Employee>();
+        ObservableCollection<EmployeeV2> listEmployee = new ObservableCollection<EmployeeV2>();
         ObservableCollection<string> listDepart = new ObservableCollection<string>();
         public MainWindow()
         {
             InitializeComponent();
-            Random rand = new Random();
-            DepartmentObj.DepUpdate += DepartmentObj_DepUpdate;
+            //DepartmentObj.DepUpdate += DepartmentObj_DepUpdate;
+            DepartmentClass.AddElement += DepartmentClass_AddElement;
+            DepartmentClass.DeleteElement += DepartmentClass_DeleteElement;
             DataGrid.ItemsSource = listEmployee;
             ListBox.ItemsSource = listDepart;
-            dataGridComboBox.ItemsSource = listDepart;
+            dataGridComboBox.ItemsSource = listDepart;             
+            #region заполняем данными по умолчанию
+            Random rand = new Random();
             string[] firstName =
                         {
                             "Алан","Георгий","Константин","Роман",
@@ -108,7 +112,7 @@ namespace Lesson5
             for (int i = 0; i < countItem; i++)
             {
                 listEmployee.Add(
-                    new Employee (
+                    new EmployeeV2 (
                         firstName[rand.Next(0,firstName.Length)],
                         lastName[rand.Next(0,lastName.Length)],
                         //(int year, int month, int day);
@@ -121,18 +125,42 @@ namespace Lesson5
                         )
                     );
             }
+            #endregion
 
         }
 
-        private void DepartmentObj_DepUpdate(KeyValuePair<int, string> e)
+        private void DepartmentClass_DeleteElement(string e)
         {
-            listDepart.Add(e.Value);
+            listDepart.Remove(e);
+            Console.WriteLine("step4");
         }
+
+        private void DepartmentClass_AddElement(string e)
+        {
+            listDepart.Add(e);
+        }
+
+        //private void DepartmentObj_DepUpdate(KeyValuePair<int, string> e)
+        //{
+        //    listDepart.Add(e.Value);
+        //}
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            DepartmentObj.Add(TextBox.Text);
-            TextBox.Clear();
+            if (TextBox.Text.Length >0)
+            {
+                DepartmentClass.Add(TextBox.Text);
+                TextBox.Clear();
+            }
+        }
+
+        private void Button_delete_click(object sender, RoutedEventArgs e)
+        {
+            if (ListBox.SelectedValue != null)
+            {
+                DepartmentClass.Delete(ListBox.SelectedValue.ToString());
+                //Console.WriteLine();
+            }
         }
     }
 }
