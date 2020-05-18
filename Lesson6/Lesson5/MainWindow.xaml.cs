@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml.Serialization;
 
 namespace Lesson5
 {
@@ -159,6 +161,52 @@ namespace Lesson5
             if (DataGrid.SelectedValue is EmployeeV2 z)
             {
                 listEmployee.Remove(z);
+            }
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
+            dlg.FileName = "myDateBase";
+            dlg.DefaultExt = ".xml";
+            dlg.Filter = "xml documents (.xml)|*.xml";
+            if (dlg.ShowDialog() == true)
+            {
+                string filename = dlg.FileName;
+                XmlSerializer formatter = new XmlSerializer(typeof(ObservableCollection<EmployeeV2>));
+
+                // получаем поток, куда будем записывать сериализованный объект
+                using (FileStream fs = new FileStream(filename, FileMode.OpenOrCreate))
+                {
+                    formatter.Serialize(fs, listEmployee);
+
+                    Console.WriteLine("Объект сериализован");
+                }
+
+            }
+        }
+
+        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        {
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+            dlg.FileName = "myDateBase";
+            dlg.DefaultExt = ".xml";
+            dlg.Filter = "xml documents (.xml)|*.xml";
+            if (dlg.ShowDialog() == true)
+            {
+                string filename = dlg.FileName;
+                using (FileStream fs = new FileStream(filename, FileMode.OpenOrCreate))
+                {
+                    XmlSerializer formatter = new XmlSerializer(typeof(ObservableCollection<EmployeeV2>));
+                    listEmployee.Clear();
+                    listDepart.Clear();
+                    DepartmentClass.Clear();
+                    listEmployee = (ObservableCollection < EmployeeV2 > )formatter.Deserialize(fs);
+                    Console.WriteLine(listEmployee.Count);
+                    DataGrid.ItemsSource = null;
+                    DataGrid.ItemsSource = listEmployee;
+                    //foreach (EmployeeV2 t in listHZ)
+                }
             }
         }
     }

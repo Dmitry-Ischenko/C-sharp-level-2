@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace Lesson5
 {
-    class EmployeeV2
+    [Serializable]
+    public class EmployeeV2
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }

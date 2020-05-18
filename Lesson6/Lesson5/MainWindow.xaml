@@ -8,18 +8,18 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Menu Height="25" VerticalAlignment="Top">
-            <MenuItem Header="Сохранить как"/>
-            <MenuItem Header="Загрузить как"/>
+            <MenuItem Header="Сохранить как" Click="MenuItem_Click"/>
+            <MenuItem Header="Загрузить как" Click="MenuItem_Click_1"/>
         </Menu>
         <TabControl Margin="0,22">
             <TabItem Header="Сотрудники">
                 <Grid Background="#FFE5E5E5">
                     <DataGrid x:Name="DataGrid" AutoGenerateColumns="False">
                         <DataGrid.Columns>
-                            <DataGridTemplateColumn Header="Delete" Width="75">
+                            <DataGridTemplateColumn Width="75">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <Button Content="Delete" Tag="{Binding}" Click="OnDelete"/>
+                                        <Button Content="Удалить" Tag="{Binding}" Click="OnDelete"/>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
