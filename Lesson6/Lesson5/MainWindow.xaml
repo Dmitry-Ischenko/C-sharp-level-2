@@ -7,15 +7,26 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <TabControl>
+        <Menu Height="25" VerticalAlignment="Top">
+            <MenuItem Header="Сохранить как"/>
+            <MenuItem Header="Загрузить как"/>
+        </Menu>
+        <TabControl Margin="0,22">
             <TabItem Header="Сотрудники">
                 <Grid Background="#FFE5E5E5">
                     <DataGrid x:Name="DataGrid" AutoGenerateColumns="False">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Имя" Binding="{Binding Path=FirstName}"/>
-                            <DataGridTextColumn Header="Фамилия" Binding="{Binding Path=LastName}"/>
-                            <DataGridTextColumn Header="День Рождения" Binding="{Binding Path=Birthday}"/>
-                            <DataGridComboBoxColumn Header="Департамент" SelectedValueBinding="{Binding Path=Department}" x:Name="dataGridComboBox"/>
+                            <DataGridTemplateColumn Header="Delete" Width="75">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="Delete" Tag="{Binding}" Click="OnDelete"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTextColumn Header="Имя" Binding="{Binding Path=FirstName}" Width="*"/>
+                            <DataGridTextColumn Header="Фамилия" Binding="{Binding Path=LastName}" Width="*"/>
+                            <DataGridTextColumn Header="День Рождения" Binding="{Binding Path=Birthday}" Width="*"/>
+                            <DataGridComboBoxColumn Header="Департамент" SelectedValueBinding="{Binding Path=Department}" x:Name="dataGridComboBox"  Width="*"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
@@ -31,6 +42,5 @@
                 </Grid>
             </TabItem>
         </TabControl>
-
     </Grid>
 </Window>

@@ -21,13 +21,11 @@ namespace Lesson5
     /// </summary>
     public partial class MainWindow : Window
     {
-        //ObservableCollection<Employee> listEmployee = new ObservableCollection<Employee>();
         ObservableCollection<EmployeeV2> listEmployee = new ObservableCollection<EmployeeV2>();
         ObservableCollection<string> listDepart = new ObservableCollection<string>();
         public MainWindow()
         {
             InitializeComponent();
-            //DepartmentObj.DepUpdate += DepartmentObj_DepUpdate;
             DepartmentClass.AddElement += DepartmentClass_AddElement;
             DepartmentClass.DeleteElement += DepartmentClass_DeleteElement;
             DataGrid.ItemsSource = listEmployee;
@@ -132,18 +130,12 @@ namespace Lesson5
         private void DepartmentClass_DeleteElement(string e)
         {
             listDepart.Remove(e);
-            Console.WriteLine("step4");
         }
 
         private void DepartmentClass_AddElement(string e)
         {
             listDepart.Add(e);
         }
-
-        //private void DepartmentObj_DepUpdate(KeyValuePair<int, string> e)
-        //{
-        //    listDepart.Add(e.Value);
-        //}
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -159,7 +151,14 @@ namespace Lesson5
             if (ListBox.SelectedValue != null)
             {
                 DepartmentClass.Delete(ListBox.SelectedValue.ToString());
-                //Console.WriteLine();
+            }
+        }
+
+        private void OnDelete(object sender, RoutedEventArgs e)
+        {
+            if (DataGrid.SelectedValue is EmployeeV2 z)
+            {
+                listEmployee.Remove(z);
             }
         }
     }

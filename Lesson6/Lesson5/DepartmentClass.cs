@@ -29,15 +29,11 @@ namespace Lesson5
         }
         static public void Delete(string element)
         {
-            Console.WriteLine("step1");
             if (_coll.Count>0)
             {
-                Console.WriteLine("step2");
-                Console.WriteLine(_coll.Contains(element));
                 if (_coll.Contains(element))
                 {
                     _coll.Remove(element);
-                    Console.WriteLine("step3");
                     DeleteElement?.Invoke(element);
                 }
             }
