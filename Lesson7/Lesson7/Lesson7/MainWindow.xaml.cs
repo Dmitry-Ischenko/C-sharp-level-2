@@ -56,7 +56,7 @@ namespace Lesson7
             //INNER JOIN Department ON Employee.id = Department.id;
             SqlCommand command = new SqlCommand(
                 "select Employee.Id,FirstName,LastName,Birthday,Department = Department.Name " +
-                "from Employee INNER JOIN Department ON Employee.id = Department.id",
+                "from Employee INNER JOIN Department ON Department.id=Department_id",
                 connection);
             adapterEmployee.SelectCommand = command;
             
@@ -81,12 +81,32 @@ namespace Lesson7
             param = command.Parameters.Add("@Id", SqlDbType.Int, 0, "Id");
             param.SourceVersion = DataRowVersion.Original;
             adapterEmployee.UpdateCommand = command;
+            // delete
+            command = new SqlCommand("DELETE FROM Employee WHERE Id = @Id", connection);
+            param = command.Parameters.Add("@Id", SqlDbType.Int, 0, "Id");
+            param.SourceVersion = DataRowVersion.Original;
+            adapterEmployee.DeleteCommand = command;
             //          select* from Department
             command = new SqlCommand("select * from Department", connection);
             adapterDepartment.SelectCommand = command;
-            //insert Department table
-            //command = new SqlCommand
             dtDepartment = new DataTable();
+            //insert
+            command = new SqlCommand(@"INSERT INTO Department (Name) VALUES (@Name);SET @Id = @@IDENTITY;", connection);
+            command.Parameters.Add("@Name", SqlDbType.NVarChar,50,"Name");
+            param = command.Parameters.Add("@Id", SqlDbType.Int, 0, "Id");
+            param.Direction = ParameterDirection.Output;
+            adapterDepartment.InsertCommand = command;
+            //update
+            command = new SqlCommand(@"UPDATE Department SET Name = @Name WHERE Id = @Id", connection);
+            command.Parameters.Add("@Name", SqlDbType.NVarChar, 50, "Name");
+            param = command.Parameters.Add("@Id", SqlDbType.Int, 0, "Id");
+            param.SourceVersion = DataRowVersion.Original;
+            adapterDepartment.UpdateCommand = command;
+            // delete
+            command = new SqlCommand("DELETE FROM Department WHERE Id = @Id", connection);
+            param = command.Parameters.Add("@Id", SqlDbType.Int, 0, "Id");
+            param.SourceVersion = DataRowVersion.Original;
+            adapterDepartment.DeleteCommand = command;
             adapterDepartment.Fill(dtDepartment);
             DataDepartment.DataContext = dtDepartment;
             foreach (DataRow row in dtDepartment.Rows)
@@ -97,28 +117,69 @@ namespace Lesson7
             dataGridComboBox.ItemsSource = listDepart;
             dtEmployee.RowChanged += DtEmployee_RowChanged;
             dtEmployee.ColumnChanged += DtEmployee_ColumnChanged;
-            //dtEmployee.
-            //EXEC InsertEmployee N'Генадий',N'Ушаков',N'2008-03-28',N'Орешков';
+            dtEmployee.Columns["Department"].DefaultValue = listDepart[0];
+            dtEmployee.Columns["Birthday"].DefaultValue = DateTime.Now;
+            //dtEmployee.Columns["Id"].ReadOnly = true;
+            dtDepartment.RowChanged += DtDepartment_RowChanged;
+            dtDepartment.ColumnChanged += DtDepartment_ColumnChanged;
+            dtDepartment.Columns["Name"].Unique = true;
+            dtDepartment.DefaultView.Sort = "Id ASC";
+            //dtDepartment.Columns["Id"].ReadOnly = true;
+        }
+
+        private void DtDepartment_ColumnChanged(object sender, DataColumnChangeEventArgs e)
+        {
+            try
+            {
+                adapterDepartment.Update(dtDepartment);
+                if (!listDepart.Contains(e.Row.ItemArray[1].ToString()))
+                {
+                    listDepart.Add(e.Row.ItemArray[1].ToString());
+                }
+                Console.WriteLine("DtDepartment_ColumnChanged");
+            }
+            catch (Exception z)
+            {
+                Console.WriteLine(z.ToString());
+            }
+        }
+
+        private void DtDepartment_RowChanged(object sender, DataRowChangeEventArgs e)
+        {
+            try
+            {
+                adapterDepartment.Update(dtDepartment);
+                if (!listDepart.Contains(e.Row.ItemArray[1].ToString()))
+                {
+                    listDepart.Add(e.Row.ItemArray[1].ToString());
+                }
+                Console.WriteLine("DtDepartment_RowChanged");
+            }
+            catch (Exception z)
+            {
+                Console.WriteLine(z.ToString());
+            }
         }
 
         private void DtEmployee_ColumnChanged(object sender, DataColumnChangeEventArgs e)
         {
-            //try
-            //{
-            //    adapterEmployee.Update(dtEmployee);
-            //}
-            //catch (Exception z)
-            //{
-            //    Console.WriteLine(z.ToString());
-            //}
-
+            try
+            {
+                adapterEmployee.Update(dtEmployee);
+                Console.WriteLine("DtEmployee_ColumnChanged");
+            }
+            catch (Exception z)
+            {
+                Console.WriteLine(z.ToString());
+            }
         }
 
         private void DtEmployee_RowChanged(object sender, DataRowChangeEventArgs e)
         {
             try
             {
-                adapterEmployee.Update(dtEmployee);
+                    adapterEmployee.Update(dtEmployee);
+                    Console.WriteLine("DtEmployee_RowChanged");
             }
             catch (Exception z)
             {
@@ -128,12 +189,31 @@ namespace Lesson7
 
         private void OnDelete(object sender, RoutedEventArgs e)
         {
-
+            if (DataGrid.SelectedItem is DataRowView newRow)
+            {
+                newRow.Row.Delete();
+                adapterEmployee.Update(dtEmployee);
+            }
         }
 
         private void OnDeleteDataDepartment(object sender, RoutedEventArgs e)
         {
+            if (DataDepartment.SelectedItem is DataRowView delRow)
+            {
+                try {
+                    delRow.Row.Delete();
+                    adapterDepartment.Update(dtDepartment);
+                }
+                catch (Exception z)
+                {
+                    dtDepartment.Rows.Clear();
+                    adapterDepartment.Fill(dtDepartment);
+                    dtDepartment.DefaultView.Sort = "Id ASC";
+                    Console.WriteLine(z.ToString());
+                    MessageBox.Show(z.Message);
+                }
 
+            }
         }
     }
 }

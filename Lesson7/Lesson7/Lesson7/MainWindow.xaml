@@ -8,8 +8,8 @@
         Title="MainWindow" Height="450" Width="800" Loaded="InitWindow">
     <Grid>
         <Menu Height="25" VerticalAlignment="Top">
-            <MenuItem Header="Заполнить базу" Click="InitDB"/>
-            <MenuItem Header="Очистить базу" Click="ClearDB"/>
+            <MenuItem Header="Заполнить базу" Click="InitDB" IsEnabled="False"/>
+            <MenuItem Header="Очистить базу" Click="ClearDB" IsEnabled="False"/>
         </Menu>
         <TabControl Margin="0,22">
             <TabItem Header="Сотрудники">
