@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using WebAPIService.App_Start;
 
 namespace WebAPIService
 {
     public static class WebApiConfig
     {
+
         public static void Register(HttpConfiguration config)
         {
             // Конфигурация и службы веб-API
@@ -19,6 +21,8 @@ namespace WebAPIService
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+            InitDB.Load();
         }
+
     }
 }
